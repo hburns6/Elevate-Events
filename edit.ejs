@@ -1,0 +1,44 @@
+<%- include('../partials/header.ejs')%>
+
+<div class = "Editcontent">
+    
+    <form method = "POST" action = "/events/<%= event.id%>?_method=PUT" class="new-form" enctype="multipart/form-data">
+        
+        <div class="form-group">
+            <label for="title" >Title</label>
+            <input type="text" id="title" name="title" value = "<%= event.title%>">
+
+            <label for="category">Category</label>
+            <select type="text" id="category" name="category" required>
+                <option value="select">Select a Category</option>
+                <option>Weddings</option>
+                <option>Corporate Retreat</option>
+                <option>Charity Events</option>
+                <option>Sports Events</option>
+                <option>Trade Shows</option>
+            </select>
+        
+            <label for="content">Details</label>
+            <textarea rows="5" id="details" name="details" class = "fixed-width"><%= event.details%></textarea>
+
+            <label for="startDate">Start Date</label>
+            <input type="datetime-local" id="startDate" name="startDate" value = "<%= event.startDate%>">
+
+            <label for="endDate" >End Date</label>
+            <input type="datetime-local" id="endDate" name="endDate" value = "<%= event.endDate%>">
+        </div>
+
+        <div class="form-group right">
+            <label for="location" >Location</label>
+            <input type="text" id="location" name="location" value = "<%= event.location%>">
+
+            <label for="image">Image</label>
+            <input type="file" id="image" name="image" required>
+
+            <input type="submit" value="Submit">   
+        </div>    
+    </form>
+
+</div>
+
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,35 @@
+<%- include('../partials/header.ejs')%>
+
+<main>
+
+    <h2>Select an event to see the details</h2>
+
+    <div>
+        <% if (events.length) { %>
+          <% 
+            const eventsByCategory = {};
+            events.forEach(event => {
+              if (!eventsByCategory[event.category]) {
+                eventsByCategory[event.category] = [];
+              }
+              eventsByCategory[event.category].push(event);
+            }); 
+            Object.entries(eventsByCategory).forEach(([category, events]) => {
+          %>
+            <h3><%= category %></h3>
+            <ul>
+              <% events.forEach(event => { %>
+                <li>
+                  <a class="eventL" href="/events/<%= event.id %>"><%= event.title %></a>
+                </li>
+              <% }); %>
+            </ul>
+          <% }); %>
+        <% } else { %>
+          <p>There are no events to display.</p>
+        <% } %>
+      </div>
+
+</main>
+
+    <%- include('../partials/footer.ejs')%>

@@ -1,0 +1,40 @@
+<%- include('../partials/header.ejs')%>
+<div class="profile-container">
+    <h3 class="welcome-message">Welcome, <%=user.firstName%></h3>
+    <% if (events.length) { %>
+        <p class="events-title">You have created these events</p>
+        <div class="event-container">
+            <% events.forEach(event => { %>
+                <div class="event-box">
+                    <h3><a href="/events/<%= event.id %>"><%= event.title %></a></h3>
+                    <div class="btn-container">
+                        <form>
+                            <button type="submit" formmethod="GET" formaction="/events/<%= event.id %>/edit" class="edit-button"></button>
+                            <button type="submit" formmethod="POST" formaction="/events/<%= event.id %>?_method=DELETE" class="delete-button"></button>
+                        </form>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    <% } else { %>
+        <p class="no-events-message">You have not created any events</p>
+    <% } %>
+
+
+    <% if (rsvps.length) { %>
+        <p class="rsvp-title">You have RSVP'd to these events</p>
+        <div class="rsvp-container">
+            <% rsvps.forEach(rsvp => { %>
+                <div class="rsvp-box">
+                <h3><a href="/events/<%= rsvp.event.id %>"><%= rsvp.event.title %></a></h3>
+                    <p>Going? <%= rsvp.status %></p>
+                </div>
+            <% }); %>
+        </div>
+    <% } else { %>
+        <p class="no-rsvps-message">You have not RSVP'd to any events</p>
+    <% } %>
+
+   
+</div>
+<%- include('../partials/footer.ejs')%>
